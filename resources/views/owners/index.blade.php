@@ -5,7 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Owners</div> <div class="card-body">
+                    <div class="card-header">
+                        <a href="{{ route('owners.index') }}" class="btn btn-primary">Owners</a>
+                        <a href="{{ route('cars.index') }}" class="btn btn-primary">Cars</a>
+                    </div>
+                    <div class="card-body">
                         <a href="{{ route('owners.create') }}" class="btn btn-success float-end">Add new Owner</a>
 
                         <hr class="mt-5">
@@ -27,11 +31,11 @@
                                     <td>
                                         <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-info text-white">Edit</a>
 
-                                        <form action="{{ route('owners.destroy', $owner->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                        </form>
+                                        <a href="{{ route('owners.delete', $owner->id) }}"
+                                           class="btn btn-danger"
+                                           onclick="return confirm('Are you sure?')">
+                                            Delete
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

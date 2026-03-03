@@ -20,6 +20,7 @@
 
                             <hr>
                             <button class="btn btn-success">Update Owner</button>
+                            <a href="{{ route('owners.index') }}" class="btn btn-secondary">Cancel</a>
 
                         </form>
 

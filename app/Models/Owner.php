@@ -8,4 +8,8 @@ class Owner extends Model
 {
     //
     protected $fillable = ['name', 'surname'];
+
+    public function cars(){
+        return $this->hasMany(Car::class);
+    }
 }

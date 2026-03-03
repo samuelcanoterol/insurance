@@ -62,9 +62,13 @@ class OwnerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Owner $owner)
+    public function destroy($id)
     {
-        $owner->delete();
+        $owner = Owner::find($id);
+
+        if ($owner && $owner->cars()->count() == 0) {
+            $owner->delete();
+        }
         return redirect()->route('owners.index');
     }
 }
