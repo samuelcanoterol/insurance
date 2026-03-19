@@ -5,10 +5,6 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('owners.index') }}" class="btn btn-primary">Owners</a>
-                        <a href="{{ route('cars.index') }}" class="btn btn-primary">Cars</a>
-                    </div>
                     <div class="card-body">
                         <a href="{{ route('owners.create') }}" class="btn btn-success float-end">Add new Owner</a>
 
@@ -27,7 +23,7 @@
                                 <tr>
                                     <td>{{ $owner->name }}</td>
                                     <td>{{ $owner->surname }}</td>
-
+                                    @if(auth()->user()->type == 'admin')
                                     <td>
                                         <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-info text-white">Edit</a>
 
@@ -37,6 +33,7 @@
                                             Delete
                                         </a>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>

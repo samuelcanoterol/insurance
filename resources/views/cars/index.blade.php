@@ -5,10 +5,6 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('owners.index') }}" class="btn btn-primary">Owners</a>
-                        <a href="{{ route('cars.index') }}" class="btn btn-primary">Cars</a>
-                    </div>
                     <div class="card-body">
                         <a href="{{ route('cars.create') }}" class="btn btn-success float-end">Add new Car</a>
 
@@ -30,7 +26,7 @@
                                     <td>{{ $car->brand }}</td>
                                     <td>{{ $car->model }}</td>
                                     <td>{{ $car->owner->name }} {{ $car->owner->surname }}</td>
-
+                                    @if(auth()->user()->type == 'admin')
                                     <td>
                                         <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-info text-white">Edit</a>
 
@@ -40,6 +36,7 @@
                                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                                         </form>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>

@@ -15,8 +15,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\CarController;
 
-Route::get('/owners/{id}/delete', [OwnerController::class, 'destroy'])->name('owners.delete');
-Route::resource('owners', OwnerController::class);
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/owners', [OwnerController::class, 'index'])->name('owners.index');
+    Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
 
-Route::post('/cars/{id}/update', [CarController::class, 'update'])->name('cars.update');
-Route::resource('cars', CarController::class);
+Route::group(['middleware' => ['auth', 'role']], function () {
+
+    Route::get('/owners/{id}/delete', [OwnerController::class, 'destroy'])->name('owners.delete');
+    Route::resource('owners', OwnerController::class)->except(['index']);
+
+    Route::post('/cars/{id}/update', [CarController::class, 'update'])->name('cars.update');
+    Route::resource('cars', CarController::class)->except(['index']);
+});
+
