@@ -6,16 +6,16 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('owners.create') }}" class="btn btn-success float-end">Add new Owner</a>
+                        <a href="{{ route('owners.create') }}" class="btn btn-success float-end">{{ __('owners.addowner') }}</a>
 
                         <hr class="mt-5">
 
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Surname</th>
-                                <th>Actions</th>
+                                <th>{{ __('owners.name') }}</th>
+                                <th>{{ __('owners.surname') }}</th>
+                                <th>{{ __('owners.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -25,12 +25,12 @@
                                     <td>{{ $owner->surname }}</td>
                                     @if(auth()->user()->type == 'admin')
                                     <td>
-                                        <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-info text-white">Edit</a>
+                                        <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-info text-white">{{ __('owners.edit') }}</a>
 
                                         <a href="{{ route('owners.delete', $owner->id) }}"
                                            class="btn btn-danger"
                                            onclick="return confirm('Are you sure?')">
-                                            Delete
+                                            {{ __('owners.delete') }}
                                         </a>
                                     </td>
                                     @endif

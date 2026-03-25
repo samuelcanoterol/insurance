@@ -11,6 +11,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/setLanguage/{lang}', [App\Http\Controllers\LangController::class, 'setLanguage'])->name('setLanguage');
 
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\CarController;

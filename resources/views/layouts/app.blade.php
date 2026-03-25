@@ -24,10 +24,10 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <a class="navbar-brand" href="{{ route('owners.index') }}">
-                    {{ __('Owners') }}
+                    {{ __('owners.owners') }}
                 </a>
                 <a class="navbar-brand" href="{{ route('cars.index') }}">
-                    {{ __('Cars') }}
+                    {{ __('owners.cars') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,6 +41,14 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('setLanguage','en') }}">EN</a>
+
+                        </li>
+                        <li class="nav-item me-5" >
+                            <a class="nav-link" href="{{ route('setLanguage','es') }}">ES</a>
+
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

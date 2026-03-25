@@ -6,17 +6,18 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('cars.create') }}" class="btn btn-success float-end">Add new Car</a>
+                        <a href="{{ route('cars.create') }}" class="btn btn-success float-end">{{ __('owners.addcar') }}</a>
 
                         <hr class="mt-5">
 
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Reg Number</th>
-                                <th>Brand</th>
-                                <th>Model</th>
-                                <th>Owner</th> <th>Actions</th>
+                                <th>{{ __('owners.regnumber') }}</th>
+                                <th>{{ __('owners.brand') }}</th>
+                                <th>{{ __('owners.model') }}</th>
+                                <th>{{ __('owners.owner') }}</th>
+                                <th>{{ __('owners.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -28,12 +29,12 @@
                                     <td>{{ $car->owner->name }} {{ $car->owner->surname }}</td>
                                     @if(auth()->user()->type == 'admin')
                                     <td>
-                                        <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-info text-white">Edit</a>
+                                        <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-info text-white">{{ __('owners.edit') }}</a>
 
                                         <form action="{{ route('cars.destroy', $car->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">{{ __('owners.delete') }}</button>
                                         </form>
                                     </td>
                                     @endif
