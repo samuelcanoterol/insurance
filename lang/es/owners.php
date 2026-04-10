@@ -21,4 +21,16 @@ return [
     'addcar'=>'Añadir coche',
     'ecar'=>'Editar coche',
 
+    'name_required'=>'El nombre es requerido',
+    'name_max'=>'El nombre no debe tener más de 60 caracteres.',
+    'surname_required'=>'El apellido es requerido',
+    'surname_max'=>'El apellido no debe tener más de 60 caracteres',
+    'reg_number_required'=>'El numero de registro es requerido',
+    'reg_number_max'=>'El numero de regsitro no debe tener más de 15 caracteres',
+    'brand_required'=>'La marca es requerida',
+    'brand_max'=>'La marca no debe tener más de 30 caracteres',
+    'model_required'=>'El modelo es requerido',
+    'model_max'=>'El modelo no debe tener más de 30 caracteres',
+    'owner_required'=>'Se requiere el nombre del propietario',
+
 ];

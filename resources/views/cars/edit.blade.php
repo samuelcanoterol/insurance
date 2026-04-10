@@ -4,6 +4,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            <div>
+                                {{  $error }}
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header">{{ __('owners.ecar') }}</div>
 
@@ -13,24 +22,28 @@
 
                             <div class="mb-3">
                                 <label class="form-label">{{ __('owners.regnumber') }}</label>
-                                <input class="form-control" type="text" name="reg_number" value="{{ $car->reg_number }}" required>
+                                <input class="form-control @error('reg_number') is-invalid @enderror"
+                                       type="text" name="reg_number" value="{{ old('reg_number', $car->reg_number) }}">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">{{ __('owners.brand') }}</label>
-                                <input class="form-control" type="text" name="brand" value="{{ $car->brand }}" required>
+                                <input class="form-control @error('brand') is-invalid @enderror"
+                                       type="text" name="brand" value="{{ old('brand', $car->brand) }}">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">{{ __('owners.model') }}</label>
-                                <input class="form-control" type="text" name="model" value="{{ $car->model }}" required>
+                                <input class="form-control @error('model') is-invalid @enderror"
+                                       type="text" name="model" value="{{ old('model', $car->model) }}">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">{{ __('owners.owner') }}</label>
-                                <select name="owner_id" class="form-control" required>
+                                <select name="owner_id" class="form-control @error('owner_id') is-invalid @enderror">
                                     @foreach($owners as $owner)
-                                        <option value="{{ $owner->id }}" {{ ($owner->id == $car->owner_id) ? 'selected' : '' }}>
+                                        <option value="{{ $owner->id }}"
+                                            {{ old('owner_id', $car->owner_id) == $owner->id ? 'selected' : '' }}>
                                             {{ $owner->name }} {{ $owner->surname }}
                                         </option>
                                     @endforeach
