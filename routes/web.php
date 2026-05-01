@@ -15,6 +15,7 @@ Route::get('/setLanguage/{lang}', [App\Http\Controllers\LangController::class, '
 
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarPhotoController;
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/owners', [OwnerController::class, 'index'])->name('owners.index');
@@ -29,5 +30,8 @@ Route::group(['middleware' => ['auth', 'role']], function () {
 
     Route::post('/cars/{id}/update', [CarController::class, 'update'])->name('cars.update');
     Route::resource('cars', CarController::class)->except(['index']);
+
+    Route::post('/cars/{carId}/photos', [CarPhotoController::class, 'store'])->name('car.photos.store');
+    Route::delete('/photos/{id}', [CarPhotoController::class, 'destroy'])->name('car.photos.destroy');
 });
 

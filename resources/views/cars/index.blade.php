@@ -13,6 +13,7 @@
                         <table class="table">
                             <thead>
                             <tr>
+                                <th>{{ __('owners.photo') }}</th>
                                 <th>{{ __('owners.regnumber') }}</th>
                                 <th>{{ __('owners.brand') }}</th>
                                 <th>{{ __('owners.model') }}</th>
@@ -23,6 +24,11 @@
                             <tbody>
                             @foreach($cars as $car)
                                 <tr>
+                                    <td>
+                                        @if($car->photos->count())
+                                            <img src="/storage/{{ $car->photos->first()->filename }}" alt="" style="width: 200px;">
+                                        @endif
+                                    </td>
                                     <td>{{ $car->reg_number }}</td>
                                     <td>{{ $car->brand }}</td>
                                     <td>{{ $car->model }}</td>

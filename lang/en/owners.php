@@ -33,6 +33,9 @@ return [
     'model_max'=>'Model must not be longer than 30 characters',
     'owner_required'=>'Owner is required',
 
+    'photo' => 'Photo:',
+    'deletephoto'=>'Delete Photo',
+    'nophoto'=>'No photos yet.',
 
 ];
 

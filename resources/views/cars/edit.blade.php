@@ -17,7 +17,7 @@
                     <div class="card-header">{{ __('owners.ecar') }}</div>
 
                     <div class="card-body">
-                        <form action="{{ route('cars.update', $car->id) }}" method="post">
+                        <form action="{{ route('cars.update', $car->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="mb-3">
@@ -50,11 +50,37 @@
                                 </select>
                             </div>
 
+                            <div class="mb-3">
+                                <label class="form-label">{{ __('owners.photo') }}</label>
+                                <input class="form-control" type="file" name="photos[]" multiple accept="image/*">
+                            </div>
+
                             <hr>
                             <button type="submit" class="btn btn-success">{{ __('owners.ecar') }}</button>
                                 <a href="{{ route('cars.index') }}" class="btn btn-secondary">{{ __('owners.cancel') }}</a>
 
                         </form>
+                        <div class="mb-3">
+                            @if($car->photos->count())
+                                <div class="row mb-3">
+                                    @foreach($car->photos as $photo)
+                                        <div class="col-md-3 mb-2">
+                                            <img src="/storage/{{ $photo->filename }}" alt="" style="width: 100%;">
+                                            <form action="{{ route('car.photos.destroy', $photo->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm w-100 mt-1">
+                                                    {{ __('owners.deletephoto') }}
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <p class="text-muted">{{ __('owners.nophoto') }}</p>
+                            @endif
+
+                        </div>
                     </div>
                 </div>
             </div>

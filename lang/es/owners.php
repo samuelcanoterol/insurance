@@ -33,4 +33,8 @@ return [
     'model_max'=>'El modelo no debe tener más de 30 caracteres',
     'owner_required'=>'Se requiere el nombre del propietario',
 
+    'photo' => 'Foto:',
+    'deletephoto'=>'Eliminar Foto',
+    'nophoto'=>'No hay fotos todavia.',
+
 ];
