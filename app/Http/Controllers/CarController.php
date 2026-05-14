@@ -7,6 +7,8 @@ use App\Models\Owner;
 use Illuminate\Http\Request;
 use App\Http\Requests\CarRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+
 
 class CarController extends Controller
 {
@@ -19,7 +21,13 @@ class CarController extends Controller
     }
     public function index()
     {
-        $cars = Car::all();
+        if (Auth::user()->type == 'admin') {
+            $cars = Car::all();
+        } else {
+            $cars = Car::whereHas('owner', function($query) {
+                $query->where('user_id', Auth::user()->id);
+            })->get();
+        }
         return view('cars.index', compact('cars'));
     }
 

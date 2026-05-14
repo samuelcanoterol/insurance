@@ -6,6 +6,7 @@ use App\Models\Owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Requests\OwnerRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller
 {
@@ -18,7 +19,11 @@ class OwnerController extends Controller
     }
     public function index()
     {
-        $owners = Owner::all();
+        if (Auth::user()->type == 'admin') {
+            $owners = Owner::all();
+        } else {
+            $owners = Owner::where('user_id', Auth::user()->id)->get();
+        }
         return view('owners.index', compact('owners'));
     }
 
@@ -35,7 +40,9 @@ class OwnerController extends Controller
      */
     public function store(OwnerRequest $request)
     {
-        Owner::create($request->all());
+        $owner = Owner::create($request->all());
+        $owner->user_id = $request->user()->id;
+        $owner->save();
         return redirect()->route('owners.index');
     }
 
@@ -72,7 +79,9 @@ class OwnerController extends Controller
         $owner = Owner::find($id);
 
         if ($owner && $owner->cars()->count() == 0) {
-            $owner->delete();
+            if (request()->user()->can('delete', $owner)) {
+                $owner->delete();
+            }
         }
         return redirect()->route('owners.index');
     }
